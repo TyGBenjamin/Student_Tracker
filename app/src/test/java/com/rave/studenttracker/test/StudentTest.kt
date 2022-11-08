@@ -5,6 +5,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.lifecycle.ViewModelProvider
 import com.rave.studenttracker.model.StudentRepo
 import com.rave.studenttracker.model.dto.StudentDTO
+import com.rave.studenttracker.model.mapper.student.StudentMapper
 import com.rave.studenttracker.model.remote.StudentApi
 import com.rave.studenttracker.utilTest.CoroutinesTestExtension
 import com.rave.studenttracker.viewmodel.StudentListViewModel
@@ -25,7 +26,8 @@ internal class StudentTest {
     @RegisterExtension
     private val coroutinesTestExtension = CoroutinesTestExtension()
     private val mockServer = mockk<StudentApi>()
-    private val repo = StudentRepo(mockServer)
+    private val studentMapper = StudentMapper()
+    private val repo = StudentRepo(mockServer, studentMapper)
     private val studentViewModel = StudentListViewModel.newInstance(repo)
 
 

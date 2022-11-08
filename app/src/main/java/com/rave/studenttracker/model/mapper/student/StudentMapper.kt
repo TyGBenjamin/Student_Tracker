@@ -17,6 +17,6 @@ class StudentMapper : DtoToEntityMapper<StudentDTO, Student> {
         firstName = dto.firstName,
         lastName = dto.lastName,
         id = dto.id,
-        university = dto.university,
+        university = dto.university
     )
 }

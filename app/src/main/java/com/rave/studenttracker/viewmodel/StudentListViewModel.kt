@@ -10,6 +10,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * Student list view model holds logic for all student related data.
+ *
+ * @constructor Create new instance of [StudnetListViewModel]
+ *
+ * @param repo Repository to fetch Student data [studentRepo]
+ */
 class StudentListViewModel(repo: StudentRepo) : ViewModel() {
 
     private val _studentListState = MutableStateFlow(StudentListState())
@@ -24,6 +31,11 @@ class StudentListViewModel(repo: StudentRepo) : ViewModel() {
     }
 
     companion object {
+        /**
+         * New instance of [ViewModelFactory].
+         *
+         * @param repo [StudentRepo] to create [StudentListViewModel]
+         */
         fun newInstance(repo: StudentRepo) = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 return StudentListViewModel(repo) as T

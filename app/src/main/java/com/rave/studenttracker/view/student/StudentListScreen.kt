@@ -1,6 +1,5 @@
 package com.rave.studenttracker.view.student
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,41 +36,53 @@ fun StudentListScreen(students: List<Student>) {
 
 @Composable
 fun StudentCard(student: Student) {
-    Card(modifier = Modifier.fillMaxWidth().padding(5.dp)){
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 20.dp, start = 10.dp)){
-            Image(painter = rememberAsyncImagePainter(student.avatar),
+    Card(modifier = Modifier.fillMaxWidth().padding(5.dp)) {
+        Row(
+            modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 20.dp,
+                    start = 10.dp
+                )
+        ) {
+            Image(
+                painter = rememberAsyncImagePainter(student.avatar),
                 contentDescription = null,
                 modifier = Modifier.size(145.dp)
             )
             Column(modifier = Modifier.padding(start = 15.dp, end = 15.dp)) {
-
                 Text(text = student.firstName + " " + student.lastName)
                 Text(text = "University: ${student.university}")
                 Text(text = "Email: ${student.email}")
             }
-
         }
-
     }
-
 }
-
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     StudentTrackerTheme {
-        StudentCard(student = Student(id=1, avatar = "pic", email = "", firstName = "ty", lastName = "Gandy", university = "PhillyU"))
+        StudentCard(
+            student = Student(
+                id = 1,
+                avatar = "pic",
+                email = "",
+                firstName = "ty",
+                lastName = "Gandy",
+                university = "PhillyU"
+            )
+        )
     }
 }
 
 @Composable
-fun ProgressIndicator(){
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+fun ProgressIndicator() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
         CircularProgressIndicator()
-
     }
 }
-

@@ -10,9 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import com.rave.studenttracker.model.StudentRepo
-import com.rave.studenttracker.model.mapper.student.StudentMapper
 import com.rave.studenttracker.model.remote.StudentApi
 import com.rave.studenttracker.model.remote.StudentApiImpl
 import com.rave.studenttracker.ui.theme.StudentTrackerTheme
@@ -20,16 +18,19 @@ import com.rave.studenttracker.view.student.ProgressIndicator
 import com.rave.studenttracker.view.student.StudentListScreen
 import com.rave.studenttracker.viewmodel.StudentListViewModel
 
+/**
+ * [MainActivity] holds the view and displays UI.
+ *
+ * @constructor Create empty Main activity
+ */
 class MainActivity : ComponentActivity() {
-
 
     private val studentViewModel by viewModels<StudentListViewModel>() {
         val fakeJsonString = assets.open("studentList.json")
             .bufferedReader()
             .use { reader -> reader.readText() }
         val studentApi: StudentApi = StudentApiImpl(fakeJsonString)
-        val studentMapper = StudentMapper()
-        val studentRepo = StudentRepo(studentApi = studentApi, studentMapper = studentMapper)
+        val studentRepo = StudentRepo(studentApi = studentApi)
         StudentListViewModel.newInstance(studentRepo)
     }
 
@@ -43,9 +44,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    when (studentListState.isLoading) {
-                        false ->  StudentListScreen(students = studentListState.students)
-                        else -> ProgressIndicator()
+                    if (studentListState.isLoading) {
+                        ProgressIndicator()
+                    } else {
+                        StudentListScreen(students = studentListState.students)
                     }
                 }
             }

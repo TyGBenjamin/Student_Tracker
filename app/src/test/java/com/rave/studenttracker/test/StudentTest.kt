@@ -33,7 +33,7 @@ internal class StudentTest {
 
 
     @Test
-    @DisplayName("Testing that a list of images is returned")
+    @DisplayName("Testing that a list of students is returned")
     fun testGetStudents() = runTest(coroutinesTestExtension.dispatcher) {
         // Given
         val result = listOf<StudentDTO>()

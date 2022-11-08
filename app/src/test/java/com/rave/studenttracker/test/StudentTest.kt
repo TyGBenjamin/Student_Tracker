@@ -1,9 +1,13 @@
 package com.rave.studenttracker.test
 
+import androidx.activity.viewModels
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.lifecycle.ViewModelProvider
 import com.rave.studenttracker.model.StudentRepo
 import com.rave.studenttracker.model.dto.StudentDTO
 import com.rave.studenttracker.model.remote.StudentApi
 import com.rave.studenttracker.utilTest.CoroutinesTestExtension
+import com.rave.studenttracker.viewmodel.StudentListViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,10 +21,13 @@ import org.junit.jupiter.api.extension.RegisterExtension
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class StudentTest {
 
+
     @RegisterExtension
     private val coroutinesTestExtension = CoroutinesTestExtension()
     private val mockServer = mockk<StudentApi>()
     private val repo = StudentRepo(mockServer)
+    private val studentViewModel = StudentListViewModel.newInstance(repo)
+
 
 
     @Test
@@ -36,5 +43,6 @@ internal class StudentTest {
         // Then
         Assertions.assertEquals(result, list)
     }
+
 }
 

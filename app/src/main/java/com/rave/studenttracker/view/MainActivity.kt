@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
             .use { reader -> reader.readText() }
         val studentApi: StudentApi = StudentApiImpl(fakeJsonString)
         val studentMapper = StudentMapper()
-        val studentRepo = StudentRepo(studentApi = studentApi)
+        val studentRepo = StudentRepo(studentApi = studentApi, studentMapper = studentMapper)
         StudentListViewModel.newInstance(studentRepo)
     }
 

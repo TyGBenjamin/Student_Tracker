@@ -11,7 +11,12 @@ import com.rave.studenttracker.model.mapper.DtoToEntityMapper
  */
 class StudentMapper : DtoToEntityMapper<StudentDTO, Student> {
 
-    override fun invoke(dto: StudentDTO): Student {
-        TODO()
-    }
+    override fun invoke(dto: StudentDTO): Student = Student(
+        avatar = dto.avatar,
+        email = dto.email,
+        firstName = dto.firstName,
+        lastName = dto.lastName,
+        id = dto.id,
+        university = dto.university,
+    )
 }

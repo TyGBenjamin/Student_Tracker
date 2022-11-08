@@ -11,6 +11,6 @@ internal class StudentApiImpl(fakeJsonString: String) : StudentApi {
 
     override suspend fun fetchStudentList(): List<StudentDTO> {
         delay(3000)
-        return listOf()
+        return fakeStudents
     }
 }

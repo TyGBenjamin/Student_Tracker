@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import com.rave.studenttracker.model.StudentRepo
 import com.rave.studenttracker.model.mapper.student.StudentMapper
 import com.rave.studenttracker.model.remote.StudentApi
@@ -20,6 +21,7 @@ import com.rave.studenttracker.view.student.StudentListScreen
 import com.rave.studenttracker.viewmodel.StudentListViewModel
 
 class MainActivity : ComponentActivity() {
+
 
     private val studentViewModel by viewModels<StudentListViewModel>() {
         val fakeJsonString = assets.open("studentList.json")

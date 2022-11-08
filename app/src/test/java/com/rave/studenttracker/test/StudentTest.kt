@@ -46,5 +46,19 @@ internal class StudentTest {
         Assertions.assertEquals(result, list)
     }
 
+    @Test
+    @DisplayName("Testing that viewModel Factory has been set correctly")
+    fun testViewModelState() = runTest(coroutinesTestExtension.dispatcher) {
+        // Given
+        val result = ViewModelProvider.Factory
+        coEvery { studentViewModel } coAnswers { result }
+
+        // When
+        val list = repo.getStudentList()
+
+        // Then
+        Assertions.assertEquals(result, list)
+    }
+
 }
 

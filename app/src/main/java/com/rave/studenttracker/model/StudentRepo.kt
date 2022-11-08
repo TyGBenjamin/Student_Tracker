@@ -11,7 +11,6 @@ class StudentRepo(
 ) {
 
     suspend fun getStudentList(): List<Student> {
-//        listOf(studentMapper.invoke(studentApi.fetchStudentList()))
         val studentList =  studentApi.fetchStudentList()
         val studentDetail = studentList.map { studentDTO ->
             Student(

@@ -37,7 +37,7 @@ fun StudentListScreen(students: List<Student>) {
 
 @Composable
 fun StudentCard(student: Student) {
-    Card(modifier = Modifier.fillMaxWidth()){
+    Card(modifier = Modifier.fillMaxWidth().padding(5.dp)){
         Row(modifier = Modifier
             .fillMaxWidth()
             .padding(top = 20.dp, start = 10.dp)){
